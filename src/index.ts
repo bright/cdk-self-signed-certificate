@@ -41,7 +41,7 @@ export class SelfSignedCertificate extends Construct {
   constructor(scope: Construct, id: string, props: SelfSignedCertificateProps) {
 
     super(scope, id);
-    const packageDir = path.dirname(require.resolve('@brightinventions/cdk-self-signed-certificate'));
+    const packageDir = path.dirname(require.resolve('@brightinventions/cdk-self-signed-certificate/package.json'));
     this.provider = CustomResourceProvider.getOrCreateProvider(this, CustomResourceType, {
       codeDirectory: path.join(packageDir, 'assets', 'self-signed-certificate-lambda'),
       runtime: CustomResourceProviderRuntime.NODEJS_20_X,
