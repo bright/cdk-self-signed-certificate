@@ -1,5 +1,5 @@
-import { Hello } from '../src';
+import { SelfSignedCertificate } from '../src';
 
 test('hello', () => {
-  expect(new Hello().sayHello()).toBe('hello, world!');
+  expect(SelfSignedCertificate).toBeDefined();
 });
