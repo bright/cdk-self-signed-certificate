@@ -23,7 +23,10 @@ project.bundler.addBundle('./src/self-signed-certificate-lambda', {
   platform: 'node',
 });
 
-project.package.addField('private', false);
+project.package.addField('publishConfig', {
+  access: 'public', // https://stackoverflow.com/a/59711239
+});
+
 
 project.addGitIgnore('.idea');
 
