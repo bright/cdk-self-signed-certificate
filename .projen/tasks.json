@@ -46,25 +46,25 @@
       "description": "Prepare assets",
       "steps": [
         {
-          "spawn": "bundle:lib/self-signed-certificate-lambda"
+          "spawn": "bundle:self-signed-certificate-lambda"
         }
       ]
     },
-    "bundle:lib/self-signed-certificate-lambda": {
-      "name": "bundle:lib/self-signed-certificate-lambda",
-      "description": "Create a JavaScript bundle from ./lib/self-signed-certificate-lambda",
+    "bundle:self-signed-certificate-lambda": {
+      "name": "bundle:self-signed-certificate-lambda",
+      "description": "Create a JavaScript bundle from ./src/self-signed-certificate-lambda",
       "steps": [
         {
-          "exec": "esbuild --bundle ./lib/self-signed-certificate-lambda --target=\"node20\" --platform=\"node\" --outfile=\"assets/lib/self-signed-certificate-lambda/index.js\" --log-level=info"
+          "exec": "esbuild --bundle ./src/self-signed-certificate-lambda --target=\"node20\" --platform=\"node\" --outfile=\"assets/self-signed-certificate-lambda/index.js\" --log-level=info"
         }
       ]
     },
-    "bundle:lib/self-signed-certificate-lambda:watch": {
-      "name": "bundle:lib/self-signed-certificate-lambda:watch",
-      "description": "Continuously update the JavaScript bundle from ./lib/self-signed-certificate-lambda",
+    "bundle:self-signed-certificate-lambda:watch": {
+      "name": "bundle:self-signed-certificate-lambda:watch",
+      "description": "Continuously update the JavaScript bundle from ./src/self-signed-certificate-lambda",
       "steps": [
         {
-          "exec": "esbuild --bundle ./lib/self-signed-certificate-lambda --target=\"node20\" --platform=\"node\" --outfile=\"assets/lib/self-signed-certificate-lambda/index.js\" --log-level=info --watch"
+          "exec": "esbuild --bundle ./src/self-signed-certificate-lambda --target=\"node20\" --platform=\"node\" --outfile=\"assets/self-signed-certificate-lambda/index.js\" --log-level=info --watch"
         }
       ]
     },

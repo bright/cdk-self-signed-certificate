@@ -17,7 +17,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   // packageName: undefined,  /* The "name" in package.json. */
 });
 
-project.bundler.addBundle('./lib/self-signed-certificate-lambda', {
+project.bundler.addBundle('./src/self-signed-certificate-lambda', {
   logLevel: BundleLogLevel.INFO,
   target: 'node20',
   platform: 'node',
