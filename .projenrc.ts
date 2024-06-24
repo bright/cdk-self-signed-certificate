@@ -23,6 +23,8 @@ project.bundler.addBundle('./src/self-signed-certificate-lambda', {
   platform: 'node',
 });
 
+project.package.addField('private', false);
+
 project.addGitIgnore('.idea');
 
 project.synth();
