@@ -118,6 +118,7 @@ const selfSignedCertificateProps: SelfSignedCertificateProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@brightinventions/cdk-self-signed-certificate.SelfSignedCertificateProps.property.certificateDetails">certificateDetails</a></code> | <code>{[ key: string ]: string}</code> | *No description.* |
+| <code><a href="#@brightinventions/cdk-self-signed-certificate.SelfSignedCertificateProps.property.tags">tags</a></code> | <code>{[ key: string ]: string}</code> | *No description.* |
 
 ---
 
@@ -125,6 +126,16 @@ const selfSignedCertificateProps: SelfSignedCertificateProps = { ... }
 
 ```typescript
 public readonly certificateDetails: {[ key: string ]: string};
+```
+
+- *Type:* {[ key: string ]: string}
+
+---
+
+##### `tags`<sup>Optional</sup> <a name="tags" id="@brightinventions/cdk-self-signed-certificate.SelfSignedCertificateProps.property.tags"></a>
+
+```typescript
+public readonly tags: {[ key: string ]: string};
 ```
 
 - *Type:* {[ key: string ]: string}

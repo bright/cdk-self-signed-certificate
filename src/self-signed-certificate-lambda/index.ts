@@ -1,9 +1,16 @@
-import type { CdkCustomResourceHandler } from 'aws-lambda';
+import { ACMClient, ImportCertificateCommand } from '@aws-sdk/client-acm';
+import type { CdkCustomResourceEvent, CdkCustomResourceHandler } from 'aws-lambda';
 import type { pki } from 'node-forge';
 import { generate } from 'selfsigned';
-import { ACMClient, ImportCertificateCommand } from '@aws-sdk/client-acm';
 
 const acmClient = new ACMClient({});
+
+export type CustomResourceProps = {
+  certificateDetails: { commonName: string; [key: string]: string };
+  tags?: { key: string; value: string }[];
+};
+
+type ResourceProps = CdkCustomResourceEvent['ResourceProperties'] & CustomResourceProps
 
 export const handler: CdkCustomResourceHandler = async (event) => {
   if (event.RequestType == 'Delete') {
@@ -11,7 +18,8 @@ export const handler: CdkCustomResourceHandler = async (event) => {
     return {};
   }
 
-  const certificateDetails = event.ResourceProperties.certificateDetails;
+  const resourceProps = event.ResourceProperties as ResourceProps;
+  const certificateDetails = resourceProps.certificateDetails;
   const certFields: pki.CertificateField[] = Object.keys(certificateDetails).map(key => ({
     name: key,
     value: certificateDetails[key],
@@ -25,7 +33,13 @@ export const handler: CdkCustomResourceHandler = async (event) => {
     CertificateArn: event.RequestType == 'Update' ? event.PhysicalResourceId : undefined,
     Certificate: new Uint8Array(Buffer.from(generatedCertificate.cert, 'utf-8')),
     PrivateKey: new Uint8Array(Buffer.from(generatedCertificate.private, 'utf-8')),
-    Tags: event.ResourceProperties.tags,
+    Tags: resourceProps.tags?.map(({
+      key,
+      value,
+    }) => ({
+      Key: key,
+      Value: value,
+    })),
   }));
 
   console.log('Import result', importResult.CertificateArn);

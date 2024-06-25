@@ -1,12 +1,14 @@
 import * as path from 'node:path';
 import { CustomResource, CustomResourceProvider, CustomResourceProviderRuntime } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
+import { CustomResourceProps } from './self-signed-certificate-lambda';
 
 export interface SelfSignedCertificateProps {
   readonly certificateDetails: {
     commonName: string;
     [key: string]: string;
   };
+  readonly tags?: Record<string, string>;
 }
 
 
@@ -54,10 +56,16 @@ export class SelfSignedCertificate extends Construct {
       }],
     });
 
+    const tags = props.tags ?? {};
+    const resourceProps: CustomResourceProps = {
+      certificateDetails: props.certificateDetails,
+      tags: Object.keys(tags).map((key) => ({ key: key, value: tags[key] })),
+    };
+
     new CustomResource(this, 'resource', {
       serviceToken: this.provider.serviceToken,
       resourceType: CustomResourceType,
-      properties: props,
+      properties: resourceProps,
     });
   }
 
