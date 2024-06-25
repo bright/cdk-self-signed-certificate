@@ -40,6 +40,8 @@ const CustomResourceType = 'Custom::SelfSignedCertificate';
 export class SelfSignedCertificate extends Construct {
   private provider: CustomResourceProvider;
 
+  private customResource: CustomResource;
+
   constructor(scope: Construct, id: string, props: SelfSignedCertificateProps) {
 
     super(scope, id);
@@ -59,15 +61,20 @@ export class SelfSignedCertificate extends Construct {
     const tags = props.tags ?? {};
     const resourceProps: CustomResourceProps = {
       certificateDetails: props.certificateDetails,
-      tags: Object.keys(tags).map((key) => ({ key: key, value: tags[key] })),
+      tags: Object.keys(tags).map((key) => ({
+        key: key,
+        value: tags[key],
+      })),
     };
 
-    new CustomResource(this, 'resource', {
+    this.customResource = new CustomResource(this, 'resource', {
       serviceToken: this.provider.serviceToken,
       resourceType: CustomResourceType,
       properties: resourceProps,
     });
   }
 
-
+  get certificateArn() {
+    return this.customResource.getAttString('CertificateArn');
+  }
 }
