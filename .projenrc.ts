@@ -10,7 +10,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   name: '@brightinventions/cdk-self-signed-certificate',
   projenrcTs: true,
   repositoryUrl: 'https://github.com/piotr.mionskowski/bright-cdk-self-signed-certificate.git',
-  bundledDeps: ['selfsigned'],
+  bundledDeps: ['selfsigned', '@aws-sdk/client-acm'],
   // deps: ,                /* Runtime dependencies of this module. */
   // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
   devDeps: ['@types/aws-lambda'], /* Build dependencies for this module. */

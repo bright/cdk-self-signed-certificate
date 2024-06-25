@@ -42,10 +42,16 @@ export class SelfSignedCertificate extends Construct {
 
     super(scope, id);
     const packageDir = path.dirname(require.resolve('@brightinventions/cdk-self-signed-certificate/package.json'));
+
     this.provider = CustomResourceProvider.getOrCreateProvider(this, CustomResourceType, {
       codeDirectory: path.join(packageDir, 'assets', 'self-signed-certificate-lambda'),
       runtime: CustomResourceProviderRuntime.NODEJS_20_X,
       description: 'Lambda function created by the custom resource provider',
+      policyStatements: [{
+        Effect: 'Allow',
+        Action: 'acm:ImportCertificate',
+        Resource: '*',
+      }],
     });
 
     new CustomResource(this, 'resource', {

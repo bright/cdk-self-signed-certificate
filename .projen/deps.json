@@ -93,6 +93,10 @@
       "type": "build"
     },
     {
+      "name": "@aws-sdk/client-acm",
+      "type": "bundled"
+    },
+    {
       "name": "selfsigned",
       "type": "bundled"
     },

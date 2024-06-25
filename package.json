@@ -66,9 +66,11 @@
     "constructs": "^10.0.5"
   },
   "dependencies": {
+    "@aws-sdk/client-acm": "^3.600.0",
     "selfsigned": "^2.4.1"
   },
   "bundledDependencies": [
+    "@aws-sdk/client-acm",
     "selfsigned"
   ],
   "keywords": [
