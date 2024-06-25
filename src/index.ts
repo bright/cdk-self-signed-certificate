@@ -29,7 +29,7 @@ export class SelfSignedCertificate extends Construct {
       description: 'Lambda function created by the custom resource provider',
       policyStatements: [{
         Effect: 'Allow',
-        Action: 'acm:ImportCertificate',
+        Action: ['acm:ImportCertificate', 'acm:AddTagsToCertificate'],
         Resource: '*',
       }],
     });
