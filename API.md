@@ -85,6 +85,7 @@ Any object.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@brightinventions/cdk-self-signed-certificate.SelfSignedCertificate.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@brightinventions/cdk-self-signed-certificate.SelfSignedCertificate.property.certificateArn">certificateArn</a></code> | <code>string</code> | *No description.* |
 
 ---
 
@@ -97,6 +98,16 @@ public readonly node: Node;
 - *Type:* constructs.Node
 
 The tree node.
+
+---
+
+##### `certificateArn`<sup>Required</sup> <a name="certificateArn" id="@brightinventions/cdk-self-signed-certificate.SelfSignedCertificate.property.certificateArn"></a>
+
+```typescript
+public readonly certificateArn: string;
+```
+
+- *Type:* string
 
 ---
 

@@ -11,30 +11,6 @@ export interface SelfSignedCertificateProps {
   readonly tags?: Record<string, string>;
 }
 
-
-// class SelfSignedCertificateResourceProvider extends Construct {
-//   readonly provider: Provider;
-//
-//   constructor(scope: Construct, id: string) {
-//     super(scope, id);
-//
-//     const onEvent = new NodejsFunction(this, 'OnEventHandler', {
-//       runtime: Runtime.NODEJS_20_X,
-//       entry: path.join(__dirname, 'self-signed-certificate-lambda', 'lambda.ts'),
-//     });
-//
-//     this.provider = new Provider(this, id, {
-//       onEventHandler: 'onEvent',
-//
-//     });
-//   }
-//
-//   static getOrCreate(scope: Construct) {
-//     const id = 'SelfSignedCertificateResourceProvider';
-//     return Stack.of(scope).node.tryFindChild(id) ?? new SelfSignedCertificateResourceProvider(scope, id, {});
-//   }
-// }
-
 const CustomResourceType = 'Custom::SelfSignedCertificate';
 
 export class SelfSignedCertificate extends Construct {
